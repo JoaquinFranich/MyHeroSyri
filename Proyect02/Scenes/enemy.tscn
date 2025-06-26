@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfk7hy5xaapxd"]
+
+[ext_resource type="Texture2D" uid="uid://marm5lrflhmu" path="res://Assets/covid19.png" id="1_nl7ea"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_o2tt1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gx0h5"]
+radius = 78.7425
+
+[node name="Enemy" type="Area2D"]
+light_mask = 2
+visibility_layer = 15
+scale = Vector2(0.155, 0.155)
+collision_layer = 2
+collision_mask = 11
+gravity_point = true
+script = ExtResource("1_o2tt1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nl7ea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gx0h5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -104.348)
+scale = Vector2(2.04347, 1.34783)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

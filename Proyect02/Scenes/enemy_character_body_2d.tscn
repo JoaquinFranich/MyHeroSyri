@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh37g1qfo5wyi"]
+
+[ext_resource type="Texture2D" uid="uid://marm5lrflhmu" path="res://Assets/covid19.png" id="1_2ooby"]
+[ext_resource type="Script" path="res://Scripts/enemy_character_body_2d.gd" id="1_bslwo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jg2f8"]
+
+[node name="EnemyCharacterBody2D" type="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 15
+scale = Vector2(0.15, 0.15)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_bslwo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2ooby")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(8.575, 8.575)
+shape = SubResource("CircleShape2D_jg2f8")

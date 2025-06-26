@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5f4t6ujtckyo"]
+
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_gulay"]
+[ext_resource type="FontFile" uid="uid://c3847pdijl5ft" path="res://Assets/Fonts/Volt5x5.ttf" id="2_sgg2k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ufh4a"]
+line_spacing = 10.0
+font = ExtResource("2_sgg2k")
+font_size = 85
+font_color = Color(0.568627, 0.101961, 0.0862745, 0.882353)
+shadow_size = 3
+shadow_color = Color(0.0392157, 0.34902, 0.4, 0.882353)
+shadow_offset = Vector2(1.5, -1.9)
+
+[sub_resource type="Animation" id="Animation_fw50v"]
+resource_name = "POV"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:font_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 2.46229, 1),
+"update": 0,
+"values": [45, 60, 45]
+}
+
+[sub_resource type="Animation" id="Animation_a31di"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [85]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_croub"]
+_data = {
+"POV": SubResource("Animation_fw50v"),
+"RESET": SubResource("Animation_a31di")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b06v2"]
+bg_color = Color(0.796078, 0.172549, 0.168627, 0.258824)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it35c"]
+bg_color = Color(0, 1, 0, 0.486275)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 340.0
+offset_bottom = 659.0
+script = ExtResource("1_gulay")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "SCORE: 9999"
+label_settings = SubResource("LabelSettings_ufh4a")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Score"]
+libraries = {
+"": SubResource("AnimationLibrary_croub")
+}
+
+[node name="HP_bar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = 639.0
+offset_right = 340.0
+offset_bottom = 660.0
+theme_override_styles/background = SubResource("StyleBoxFlat_b06v2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_it35c")
+value = 100.0
+show_percentage = false

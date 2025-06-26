@@ -1,0 +1,294 @@
+[gd_scene load_steps=16 format=3 uid="uid://dnhja0io5t2yq"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_oibhu"]
+[ext_resource type="FontFile" uid="uid://diwy0e3rphryp" path="res://Assets/Fonts/Round9x13.ttf" id="2_biub4"]
+[ext_resource type="Texture2D" uid="uid://b078ujger20ot" path="res://Assets/menu_background.png" id="2_tgu8y"]
+[ext_resource type="Texture2D" uid="uid://be6ac1q5ki88w" path="res://Assets/Sprites/virus.png" id="3_ey4lw"]
+[ext_resource type="FontFile" uid="uid://dehuvvwh8ig55" path="res://Assets/Fonts/Scoreboard9x13.ttf" id="3_oocly"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_68bqe"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(150, 1, 1)
+direction = Vector3(0, -888.44, 0)
+spread = 10.51
+initial_velocity_min = -550.0
+initial_velocity_max = -150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.2
+
+[sub_resource type="Animation" id="Animation_vlrnn"]
+resource_name = "CTA"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.768627, 0.545098, 0.160784, 1), Color(0.768627, 0.545098, 0.160784, 0.333333), Color(0.768627, 0.545098, 0.160784, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_akm3m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.768627, 0.545098, 0.160784, 0.862745)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oi4b2"]
+_data = {
+"CTA": SubResource("Animation_vlrnn"),
+"RESET": SubResource("Animation_akm3m")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ur2ut"]
+font = ExtResource("2_biub4")
+font_size = 45
+font_color = Color(0.109159, 0.29748, 0.210718, 1)
+shadow_size = 3
+shadow_color = Color(0.866667, 0.384314, 0.666667, 1)
+shadow_offset = Vector2(1.5, -2.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v6b0t"]
+font = ExtResource("2_biub4")
+font_size = 28
+font_color = Color(0.109804, 0.298039, 0.211765, 1)
+shadow_size = 3
+shadow_color = Color(0.866667, 0.384314, 0.666667, 1)
+shadow_offset = Vector2(1.5, -2.5)
+
+[sub_resource type="Animation" id="Animation_ghtbh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ix7e"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c0mlu"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3pfxp"]
+_data = {
+"RESET": SubResource("Animation_ghtbh"),
+"fade_in": SubResource("Animation_4ix7e"),
+"fade_out": SubResource("Animation_c0mlu")
+}
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oibhu")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 550)
+
+[node name="BackgroundSprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(170.5, 329.5)
+scale = Vector2(1.00294, 0.998485)
+texture = ExtResource("2_tgu8y")
+
+[node name="VirusParticleEffect" type="GPUParticles2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(170, -50)
+amount = 18
+process_material = SubResource("ParticleProcessMaterial_68bqe")
+texture = ExtResource("3_ey4lw")
+lifetime = 4.0
+speed_scale = 1.45
+explosiveness = 0.24
+
+[node name="StartMarginContainer" type="MarginContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = 78.0
+offset_right = -36.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartVBoxContainer" type="VBoxContainer" parent="StartMarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
+clip_contents = true
+layout_direction = 1
+layout_mode = 2
+focus_mode = 2
+
+[node name="StartButton" type="Button" parent="StartMarginContainer/StartVBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.768627, 0.545098, 0.160784, 0.862745)
+theme_override_colors/font_pressed_color = Color(0.186671, 0.460361, 0.334, 1)
+theme_override_colors/font_hover_color = Color(0.768627, 0.545098, 0.160784, 0.333333)
+theme_override_colors/font_focus_color = Color(0.188235, 0.458824, 0.333333, 0.572549)
+theme_override_fonts/font = ExtResource("2_biub4")
+theme_override_font_sizes/font_size = 45
+text = "START"
+flat = true
+icon_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StartMarginContainer/StartVBoxContainer/StartButton"]
+libraries = {
+"": SubResource("AnimationLibrary_oi4b2")
+}
+
+[node name="QuitMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -44.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 41.0
+grow_horizontal = 0
+
+[node name="QuitButton" type="Button" parent="QuitMarginContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.188235, 0.458824, 0.333333, 0.572549)
+theme_override_colors/font_pressed_color = Color(0.677473, 0.132574, 0.465372, 0.572549)
+theme_override_colors/font_hover_color = Color(0.188235, 0.458824, 0.333333, 0.572549)
+theme_override_colors/font_focus_color = Color(0.677473, 0.132574, 0.465372, 0.572549)
+theme_override_fonts/font = ExtResource("3_oocly")
+theme_override_font_sizes/font_size = 30
+text = "X"
+flat = true
+icon_alignment = 1
+
+[node name="MuteMarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -76.0
+offset_top = 8.0
+offset_right = -7.0
+offset_bottom = 64.0
+grow_horizontal = 0
+
+[node name="MuteButton" type="Button" parent="MuteMarginContainer"]
+layout_mode = 2
+text = "MUTE"
+
+[node name="TitleMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -266.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = -55
+theme_override_constants/margin_bottom = -5
+
+[node name="TitleVBoxContainer" type="VBoxContainer" parent="TitleMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Title1" type="Label" parent="TitleMarginContainer/TitleVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 42
+text = "MY HERO SYRI"
+label_settings = SubResource("LabelSettings_ur2ut")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="TitleMarginContainer/TitleVBoxContainer/Title1"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 67.0
+offset_right = 277.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 35
+text = "CURE'EM ALL!!!
+"
+label_settings = SubResource("LabelSettings_v6b0t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FadeTransition" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeTransition"]
+libraries = {
+"": SubResource("AnimationLibrary_3pfxp")
+}
+
+[node name="FadeTimer" type="Timer" parent="FadeTransition"]
+
+[connection signal="pressed" from="StartMarginContainer/StartVBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitMarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MuteMarginContainer/MuteButton" to="." method="_on_mute_button_pressed"]
+[connection signal="timeout" from="FadeTransition/FadeTimer" to="." method="_on_fade_timer_timeout"]

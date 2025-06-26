@@ -1,0 +1,183 @@
+[gd_scene load_steps=17 format=3 uid="uid://cqa1uax308tiu"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_w83ue"]
+[ext_resource type="PackedScene" uid="uid://cdg8sentuaw7r" path="res://Scenes/player.tscn" id="2_ipl3v"]
+[ext_resource type="PackedScene" uid="uid://c5f4t6ujtckyo" path="res://Scenes/hud.tscn" id="3_5uub5"]
+[ext_resource type="PackedScene" uid="uid://d1btmaiyutjq0" path="res://Scenes/game_over_screen.tscn" id="4_dsseg"]
+[ext_resource type="PackedScene" uid="uid://bh37g1qfo5wyi" path="res://Scenes/enemy_character_body_2d.tscn" id="4_q6gvw"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://Assets/addons/virtual_joystick/virtual_joystick_scene.tscn" id="5_wnjf6"]
+[ext_resource type="Script" path="res://Assets/addons/virtual_joystick/virtual_joystick.gd" id="6_h1bv5"]
+
+[sub_resource type="Animation" id="Animation_ghtbh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ix7e"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c0mlu"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3pfxp"]
+_data = {
+"RESET": SubResource("Animation_ghtbh"),
+"fade_in": SubResource("Animation_4ix7e"),
+"fade_out": SubResource("Animation_c0mlu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxak4"]
+size = Vector2(340, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7mch"]
+size = Vector2(5, 660)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hup33"]
+size = Vector2(6, 660)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40gp2"]
+bg_color = Color(0, 0, 0.0980392, 0.560784)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh6oj"]
+bg_color = Color(0, 1, 0, 0.486275)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_w83ue")
+enemy_scenes = Array[PackedScene]([ExtResource("4_q6gvw")])
+
+[node name="UI_Layer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI_Layer" instance=ExtResource("3_5uub5")]
+
+[node name="GameOverScreen" parent="UI_Layer" instance=ExtResource("4_dsseg")]
+visible = false
+
+[node name="Test" type="Node2D" parent="UI_Layer"]
+
+[node name="UI" type="CanvasLayer" parent="UI_Layer/Test"]
+
+[node name="Virtual joystick left" parent="UI_Layer/Test/UI" instance=ExtResource("5_wnjf6")]
+visible = false
+modulate = Color(1, 1, 1, 0.0980392)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 0.0
+grow_horizontal = 2
+script = ExtResource("6_h1bv5")
+joystick_mode = 1
+visibility_mode = 1
+
+[node name="FadeTransition" type="ColorRect" parent="UI_Layer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI_Layer/FadeTransition"]
+libraries = {
+"": SubResource("AnimationLibrary_3pfxp")
+}
+
+[node name="FadeTimer" type="Timer" parent="UI_Layer/FadeTransition"]
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 1.2
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource("2_ipl3v")]
+position = Vector2(176, 598)
+
+[node name="PlayerSpawnPos" type="Marker2D" parent="."]
+position = Vector2(172, 598)
+
+[node name="BulletContainer" type="Node2D" parent="."]
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="Borders" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+light_mask = 8
+visibility_layer = 3
+collision_layer = 8
+collision_mask = 3
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(170, -3)
+shape = SubResource("RectangleShape2D_uxak4")
+
+[node name="Left" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-2.5, 330)
+shape = SubResource("RectangleShape2D_y7mch")
+
+[node name="Right" type="CollisionShape2D" parent="Borders"]
+position = Vector2(343, 330)
+shape = SubResource("RectangleShape2D_hup33")
+
+[node name="TopPlayer" type="CollisionShape2D" parent="Borders"]
+position = Vector2(170, 548)
+shape = SubResource("RectangleShape2D_uxak4")
+
+[node name="Down" type="CollisionShape2D" parent="Borders"]
+position = Vector2(170, 647)
+shape = SubResource("RectangleShape2D_uxak4")
+
+[node name="HP_bar" type="ProgressBar" parent="."]
+offset_top = 646.0
+offset_right = 340.0
+offset_bottom = 660.0
+theme_override_styles/background = SubResource("StyleBoxFlat_40gp2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dh6oj")
+value = 100.0
+show_percentage = false
+
+[connection signal="timeout" from="UI_Layer/FadeTransition/FadeTimer" to="." method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
