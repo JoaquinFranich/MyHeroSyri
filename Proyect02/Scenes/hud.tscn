@@ -88,6 +88,7 @@ libraries = {
 }
 
 [node name="HP_bar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_top = 639.0
 offset_right = 340.0
