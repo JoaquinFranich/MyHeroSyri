@@ -1,3 +1,4 @@
-res://Scenes/start_menu.tscn
 res://Scenes/game.tscn
-res://Scenes/player.tscn
+res://Scripts/game.gd
+res://Scripts/player.gd
+res://Scenes/start_menu.tscn

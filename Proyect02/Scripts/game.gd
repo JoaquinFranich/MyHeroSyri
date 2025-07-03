@@ -97,6 +97,7 @@ func _on_enemy_killed(points):
 
 func _on_player_killed():
 	$UI_Layer/FadeTransition.visible = false
+	#is_moving = true
 	Engine.time_scale = 1.0
 	player.visible = false
 	await get_tree().create_timer(0.5).timeout

@@ -50,7 +50,7 @@ func _physics_process(delta):
 	if dir.x != 0:
 		sprite_2d.flip_h = dir.x < 0
 		
-	print("The velocity is: ", velocity, " and the direction is: ", dir)
+	#print("The velocity is: ", velocity, " and the direction is: ", dir)
 
 
 func shoot():
