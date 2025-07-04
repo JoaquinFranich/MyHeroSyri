@@ -11,15 +11,17 @@ config_version=5
 [application]
 
 config/name="Proyect 02"
+config/version="1.0"
 run/main_scene="res://Scenes/start_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=340
-window/size/viewport_height=660
+window/size/viewport_width=720
+window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [input]
 
