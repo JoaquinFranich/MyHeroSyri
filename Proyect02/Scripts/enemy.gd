@@ -4,10 +4,18 @@ extends Area2D
 @export var speed = Vector2()
 @export var hp = randf_range(2, 5)
 
+var time_scale := 1.0
+
+func set_time_scale(scale: float):
+	time_scale = scale
+
+func _ready():
+	add_to_group("gameplay")
 
 func _physics_process(delta):
+	var scaled_delta = delta * time_scale
 	bounce()
-	move(delta)
+	move(scaled_delta)
 	
 	#var direction = global_position.direction_to(Player.global_position)
 	#var velocity = direction * speed

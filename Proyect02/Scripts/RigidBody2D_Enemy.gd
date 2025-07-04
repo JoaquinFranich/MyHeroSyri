@@ -5,11 +5,13 @@ extends RigidBody2D
 @export var speed = Vector2()
 #@export var hp = randf_range(50, 70)
 @export var hp = 1
+var time_scale := 1.0
 
 func _physics_process(delta):
+	var scaled_delta = delta * time_scale
 	bounce()
-	move(delta)
-	#global_position.y += speed * delta
+	move(scaled_delta)
+	global_position.y += -speed * scaled_delta
 	
 	
 # Rebote del Virus
@@ -49,3 +51,9 @@ func _on_body_entered(body):
 		body.player_hit()
 		print("The player get hit!!!")
 		enemy_hit(1)
+
+func set_time_scale(scale: float):
+	time_scale = scale
+
+func _ready():
+	add_to_group("gameplay")

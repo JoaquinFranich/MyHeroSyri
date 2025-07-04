@@ -2,14 +2,15 @@ class_name Game
 extends Node2D
 
 @export var enemy_scenes: Array[PackedScene] = []
-@export var bullet_time_slowdown = 0.3 # Factor de relentizacion del tiempo
+@export var bullet_time_slowdown = 0.02 # Factor de relentizacion del tiempo
 
-@onready var player_spawn_pos = $PlayerSpawnPos
-@onready var bullet_conainer = $BulletContainer
+@onready var player_spawn_pos = $Gameplay/PlayerSpawnPos
+@onready var bullet_conainer = $Gameplay/BulletContainer
 #@onready var timer = $EnemySpawnTimer
-@onready var enemy_container = $EnemyContainer
+@onready var enemy_container = $Gameplay/EnemyContainer
 @onready var hud = $UI_Layer/HUD
 @onready var gameover = $UI_Layer/GameOverScreen
+@onready var hp_bar = $"../../UI_Layer/HUD/HP_bar"
 
 var player = null
 var score := 0:
@@ -23,6 +24,7 @@ var score := 0:
 		#hud.score = score
 		
 var is_moving = false
+var bullet_time_active = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,15 +49,20 @@ func _process(delta):
 		get_tree().reload_current_scene()
 
 
+func set_bullet_time(active: bool):
+	bullet_time_active = active
+	var scale = bullet_time_slowdown if active else 1.0
+	for node in get_tree().get_nodes_in_group("gameplay"):
+		if node.has_method("set_time_scale"):
+			node.set_time_scale(scale)
+
 func _physics_process(delta):
 	var dir = Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down"))
 	is_moving = dir.length() > 0
+
+	# Bullet time logic: only affect gameplay nodes
+	set_bullet_time(!is_moving)
 	
-	# Ajustar Engine.time_scale segun el movimiento del jugador.
-	if is_moving:
-		Engine.time_scale = 1.0
-	else:
-		Engine.time_scale = bullet_time_slowdown
 	# Movimiento del Jugador.
 	#player.velocity = dir * player.speed
 	#player.move_and_slide()
@@ -97,9 +104,8 @@ func _on_enemy_killed(points):
 
 func _on_player_killed():
 	$UI_Layer/FadeTransition.visible = false
-	#is_moving = true
-	Engine.time_scale = 1.0
 	player.visible = false
+	set_bullet_time(false)
 	await get_tree().create_timer(0.5).timeout
 	gameover.visible = true
 

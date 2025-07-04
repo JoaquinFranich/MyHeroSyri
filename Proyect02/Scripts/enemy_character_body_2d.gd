@@ -3,21 +3,29 @@ extends CharacterBody2D
 
 signal killed(points)
 
-@onready var player = get_node("/root/Game/Player")
+@onready var player = get_node("/root/Game/Gameplay/Player")
 
 @export var speed = Vector2()
 @export var enemy_hp = randf_range(3, 5)
 @export var points = randf_range(50, 150)
 
+var time_scale := 1.0
+
+func set_time_scale(scale: float):
+	time_scale = scale
+	print("Enemy time_scale set to: ", scale)  # Debug output
+
+func _ready():
+	add_to_group("gameplay")
 
 func _process(delta):
 	pass
 
-
 func _physics_process(delta):
+	var scaled_delta = delta * time_scale
 	bounce()
-	move(delta)
-	follow_player()
+	move(scaled_delta)
+	follow_player(scaled_delta)
 	
 	
 # Rebote del Virus
@@ -39,9 +47,9 @@ func move(delta):
 
 
 # Perseguir al Player
-func follow_player():
+func follow_player(delta):
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 55.0
+	velocity = direction * 25.0
 	move_and_slide()
 
 

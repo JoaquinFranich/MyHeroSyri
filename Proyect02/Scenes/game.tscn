@@ -122,21 +122,23 @@ libraries = {
 
 [node name="FadeTimer" type="Timer" parent="UI_Layer/FadeTransition"]
 
-[node name="EnemySpawnTimer" type="Timer" parent="."]
+[node name="Gameplay" type="CanvasGroup" parent="."]
+
+[node name="EnemySpawnTimer" type="Timer" parent="Gameplay"]
 wait_time = 1.2
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource("2_ipl3v")]
+[node name="Player" parent="Gameplay" instance=ExtResource("2_ipl3v")]
 z_index = 1
 position = Vector2(176, 577)
 motion_mode = 1
 
-[node name="PlayerSpawnPos" type="Marker2D" parent="."]
+[node name="PlayerSpawnPos" type="Marker2D" parent="Gameplay"]
 position = Vector2(172, 587)
 
-[node name="BulletContainer" type="Node2D" parent="."]
+[node name="BulletContainer" type="Node2D" parent="Gameplay"]
 
-[node name="EnemyContainer" type="Node2D" parent="."]
+[node name="EnemyContainer" type="Node2D" parent="Gameplay"]
 
 [node name="Borders" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
@@ -166,4 +168,4 @@ position = Vector2(170, 648)
 shape = SubResource("RectangleShape2D_uxak4")
 
 [connection signal="timeout" from="UI_Layer/FadeTransition/FadeTimer" to="." method="_on_fade_timer_timeout"]
-[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="Gameplay/EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
