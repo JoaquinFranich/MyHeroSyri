@@ -58,7 +58,7 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_ur2ut"]
 font = ExtResource("2_biub4")
-font_size = 95
+font_size = 45
 font_color = Color(0.109159, 0.29748, 0.210718, 1)
 shadow_size = 3
 shadow_color = Color(0.866667, 0.384314, 0.666667, 1)
@@ -66,7 +66,7 @@ shadow_offset = Vector2(1.5, -2.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v6b0t"]
 font = ExtResource("2_biub4")
-font_size = 50
+font_size = 28
 font_color = Color(0.109804, 0.298039, 0.211765, 1)
 shadow_size = 3
 shadow_color = Color(0.866667, 0.384314, 0.666667, 1)
@@ -140,13 +140,13 @@ motion_mirroring = Vector2(0, 550)
 
 [node name="BackgroundSprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_repeat = 2
-position = Vector2(360, 599.09)
-scale = Vector2(2.068, 2.058)
+position = Vector2(170.5, 329.5)
+scale = Vector2(1.00294, 0.998485)
 texture = ExtResource("2_tgu8y")
 
 [node name="VirusParticleEffect" type="GPUParticles2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.517647)
-position = Vector2(360, -50)
+position = Vector2(170, -50)
 amount = 18
 process_material = SubResource("ParticleProcessMaterial_68bqe")
 texture = ExtResource("3_ey4lw")
@@ -155,17 +155,18 @@ speed_scale = 1.45
 explosiveness = 0.24
 
 [node name="StartMarginContainer" type="MarginContainer" parent="."]
+layout_direction = 1
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 280.0
-offset_right = -120.0
-offset_bottom = 331.0
+offset_left = 32.0
+offset_top = 78.0
+offset_right = -36.0
+offset_bottom = 129.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.2, 1.2)
 
 [node name="StartVBoxContainer" type="VBoxContainer" parent="StartMarginContainer"]
 self_modulate = Color(1, 1, 1, 0)
@@ -196,10 +197,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -104.83
-offset_top = -18.61
-offset_right = -4.83002
-offset_bottom = 81.39
+offset_left = -44.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 41.0
 grow_horizontal = 0
 
 [node name="QuitButton" type="Button" parent="QuitMarginContainer"]
@@ -237,8 +238,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -440.0
-offset_bottom = -184.0
+offset_top = -266.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = -55
@@ -259,10 +260,10 @@ vertical_alignment = 1
 
 [node name="Title2" type="Label" parent="TitleMarginContainer/TitleVBoxContainer/Title1"]
 layout_mode = 0
-offset_left = 150.0
-offset_top = 119.065
-offset_right = 497.0
-offset_bottom = 167.065
+offset_left = 32.0
+offset_top = 67.0
+offset_right = 277.0
+offset_bottom = 101.0
 theme_override_font_sizes/font_size = 35
 text = "CURE'EM ALL!!!
 "

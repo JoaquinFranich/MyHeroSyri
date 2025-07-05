@@ -1,6 +1,8 @@
-res://Scenes/enemy_character_body_2d.tscn
-res://Scenes/start_menu.tscn
 res://Scenes/game.tscn
+res://Scripts/game.gd
+res://Scripts/player.gd
+res://Scenes/start_menu.tscn
+res://Scripts/enemy_character_body_2d.gd
 res://Scenes/hud.tscn
 res://Scenes/player.tscn
-res://Scripts/game.gd
+res://Scenes/enemy_character_body_2d.tscn
