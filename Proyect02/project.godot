@@ -17,9 +17,11 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=340
-window/size/viewport_height=660
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/borderless=true
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [input]
 

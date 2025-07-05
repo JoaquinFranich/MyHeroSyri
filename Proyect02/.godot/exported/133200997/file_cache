@@ -1,0 +1,10 @@
+res://Assets/addons/virtual_joystick/test/test.tscn::7c98f32450acaf74b070336697a0a9b9::1751743557::res://.godot/exported/133200997/export-aeff08bc4f579274ec7dbecc2c1e8d43-test.scn
+res://Assets/addons/virtual_joystick/virtual_joystick_scene.tscn::cf9bd77920048d221dbd1c659758f244::1751743557::res://.godot/exported/133200997/export-139ea179ed09128edf276ea5d3777cce-virtual_joystick_scene.scn
+res://Scenes/bullet.tscn::c106b49111e17d9c4feb6c1301a3f574::1751743557::res://.godot/exported/133200997/export-ebb3521b4f0ab2fc80eef1183e18e924-bullet.scn
+res://Scenes/enemy.tscn::fdb90ea7dd5f29c072321fae497eb998::1751743557::res://.godot/exported/133200997/export-7111e2a4ba75c4a329f0f9553f2950f2-enemy.scn
+res://Scenes/enemy_character_body_2d.tscn::4e8f3d714efff43ea1af67e9f8e10cee::1751745900::res://.godot/exported/133200997/export-493b3da43384c1fd3281a45e9f5f50f3-enemy_character_body_2d.scn
+res://Scenes/game.tscn::ae73b0e17cf972bee364662018849905::1751745952::res://.godot/exported/133200997/export-d45e16ca8d170891778b9dcfa9c69e68-game.scn
+res://Scenes/game_over_screen.tscn::72df1de6ceb3469b0531a956b0b2d96b::1751743557::res://.godot/exported/133200997/export-76c030334d43debe9d47205f999de29d-game_over_screen.scn
+res://Scenes/hud.tscn::d6e912f50364fe55f810048539262daa::1751745900::res://.godot/exported/133200997/export-885e17d6a23b453de5b281f1a900d8bb-hud.scn
+res://Scenes/player.tscn::ab1c63b1592bc750d6688ca362f4ee21::1751745900::res://.godot/exported/133200997/export-1753c997600d68ab5d20ae99fddb15c6-player.scn
+res://Scenes/start_menu.tscn::5ca75839d85954d0e49cffa1c12dc797::1751745900::res://.godot/exported/133200997/export-204b4add5c050bc6e783a71968008164-start_menu.scn
