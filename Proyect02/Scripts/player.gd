@@ -40,7 +40,7 @@ func _physics_process(delta):
 	
 	if overlaping_mobs.size() > 0:
 		for mob in overlaping_mobs:
-			player_hp -= DAMAGE_RATE * overlaping_mobs.size() * scaled_delta
+			player_hp -= DAMAGE_RATE * overlaping_mobs.size() * delta
 			hp_bar.value = player_hp
 			mob.queue_free()
 			if player_hp <= 0.0:
