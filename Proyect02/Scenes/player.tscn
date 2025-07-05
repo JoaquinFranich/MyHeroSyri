@@ -13,8 +13,8 @@ height = 27.0636
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 visibility_layer = 10
-position = Vector2(360, 555)
-scale = Vector2(0.3, 0.3)
+position = Vector2(174, 555)
+scale = Vector2(0.2, 0.2)
 disable_mode = 2
 collision_mask = 10
 script = ExtResource("1_2w1kl")

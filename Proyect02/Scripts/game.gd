@@ -87,7 +87,7 @@ func _on_enemy_spawn_timer_timeout():
 	if is_moving == true:
 		for i in range(randf_range(7, 10)):
 			var e = enemy_scenes.pick_random().instantiate()
-			e.global_position = Vector2(randf_range(20, 75), randf_range(50, 110))
+			e.global_position = Vector2(randf_range(50, 300), randf_range(50, 90))
 			e.killed.connect(_on_enemy_killed)
 			enemy_container.add_child(e)
 	#for i in range(randf_range(7, 10)):
